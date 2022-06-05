@@ -47,6 +47,15 @@ jobs:
           path: ${{ env.IMAGE_NAME }}
       - name: Run container based on builded image
         run: |
+          echo START DEBUGGING
+          echo current
+          pwd
+          ls -larth
+          echo parent
+          ls -larth ..
+          echo parent parent
+          ls -larth ../..
+          echo end DEBUGGING
           docker load < $IMAGE_NAME
           docker run --name $IMAGE_NAME -d -p ${APP_EXPOSED_PORT}:${APP_CONTAINER_PORT} -e PORT=$APP_CONTAINER_PORT ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
           sleep 5
