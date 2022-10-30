@@ -1,5 +1,5 @@
 /* import shared library. */
-/* @Library('chocoapp-slack-share-library')_ */
+@Library('chocoapp-slack-share-library')_
 
 pipeline {
     environment {
@@ -71,7 +71,7 @@ pipeline {
 
       stage('Push image in staging and deploy it') {
         when {
-            expression { GIT_BRANCH == 'origin/main' }
+            expression { GIT_BRANCH == 'origin/dev' }
         }
 	agent any 
         environment {
@@ -90,7 +90,7 @@ pipeline {
      }
      stage('Push image in production and deploy it') {
        when {
-           expression { GIT_BRANCH == 'origin/main' }
+           expression { GIT_BRANCH == 'origin/dev' }
        }
 	agent any
        environment {
@@ -108,11 +108,11 @@ pipeline {
        }
      }
   }
-/*  post {
+  post {
      always {
        script {
          slackNotifier currentBuild.result
      }
     }
-  } */
+  } 
 }
