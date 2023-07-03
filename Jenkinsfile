@@ -40,7 +40,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                   curl $(ip -f inet addr show enp0s8 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p') | grep -i "Dimension"
+                   curl http://192.168.56.6/ | grep -i "Dimension"
                 '''
               }
            }
