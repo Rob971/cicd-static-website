@@ -11,6 +11,7 @@ pipeline {
         PRODUCTION = "chocoapp-jenkins-prod"
         DOCKERHUB_ID = "choco1992"
         DOCKERHUB_PASSWORD = credentials('dockerhub_password')
+	CURRENT_IP = $(ip -f inet addr show enp0s8 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
     }
     agent none
     stages {
@@ -40,7 +41,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                   curl 172.28.128.123 | grep -i "Dimension"
+                   curl $CURRENT_IP | grep -i "Dimension"
                 '''
               }
            }
