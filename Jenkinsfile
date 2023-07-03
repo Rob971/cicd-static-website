@@ -40,9 +40,7 @@ pipeline {
            steps {
               script {
                 sh '''
-		   MY_IP = $(hostname -I)
-     		   echo $MY_IP
-                   curl $MY_IP | grep -i "Dimension"
+                   curl $(hostname -I) | grep -i "Dimension"
                 '''
               }
            }
