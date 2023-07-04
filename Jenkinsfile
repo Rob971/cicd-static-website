@@ -40,7 +40,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                   curl http://10.0.1.3/ | grep -i "Dimension"
+                   curl $TEST_MACHINE_IP | grep -i "Dimension"
                 '''
               }
            }
